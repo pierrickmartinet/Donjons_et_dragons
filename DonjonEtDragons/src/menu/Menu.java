@@ -44,7 +44,8 @@ public class Menu {
 		// Tant que la saisie est différente de "warrior" ou "magicien" le programme
 		// redemande de séléctionner un personnage
 		while ((!characterChoice.equals("warrior")) && (!characterChoice.equals("magicien"))) {
-
+			
+			// Choix du personnage
 			System.out.println("Choisis ton personnage : saisis warrior ou magicien");
 			characterChoice = keyboard.nextLine();
 		}
@@ -74,9 +75,9 @@ public class Menu {
 		}
 
 
-		
 	}
 
+	// Getters et Setters
 	public Scanner getKeyboard() {
 		return keyboard;
 	}
