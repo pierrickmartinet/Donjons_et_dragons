@@ -27,6 +27,10 @@ public class Magician {
 		this.attack = attack;
 	}
 	
+	public String toString() {
+		return name;
+	}
+	
 	
 	// Getters et Setters
 	public String getName() {
