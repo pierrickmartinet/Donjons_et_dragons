@@ -27,10 +27,6 @@ public class Magician {
 		this.attack = attack;
 	}
 	
-	public String toString() {
-		return name;
-
-	}
 	
 	
 	// Getters et Setters
@@ -57,6 +53,11 @@ public class Magician {
 
 	public void setAttack(int attack) {
 		this.attack = attack;
+	}
+
+	// Fonction toString
+	public String toString() {
+		return "Magicien name: " + name + ", life: " + life + ", attack: " + attack;
 	}
 
 }

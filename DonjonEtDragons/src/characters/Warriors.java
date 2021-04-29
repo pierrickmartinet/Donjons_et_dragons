@@ -5,7 +5,6 @@ public class Warriors {
 	
 	// Attributs
 	private String name;
-	private String img;
 	private int life;
 	private int attack;
 	
@@ -45,13 +44,6 @@ public class Warriors {
 		this.name = name;
 	}
 
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
-	}
 
 	public int getLife() {
 		return life;
@@ -69,9 +61,9 @@ public class Warriors {
 		this.attack = attack;
 	}
 
-
+	// Fonction toString
 	public String toString() {
-		return "name: " + name + ", life: " + life + ", attack: " + attack;
+		return "Warrior name: " + name + ", life: " + life + ", attack: " + attack;
 	}
 
 }
