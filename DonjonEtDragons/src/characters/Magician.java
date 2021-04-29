@@ -4,22 +4,27 @@ public class Magician {
 	
 	// Attributs
 	private String name;
-	private String img;
 	private int life;
 	private int attack;
 	
 	
 	// Constructeurs
 	public Magician() {
-		
+		name = null;
+		life = 5;
+		attack = 5;
 	}
 	
 	public Magician(String name) {
-		
+		this.name = name;
+		life = 5;
+		attack = 5;
 	}
 	
-	public Magician(String name, String img, int life, int attack) {
-		
+	public Magician(String name, int life, int attack) {
+		this.name = name;
+		this.life = life;
+		this.attack = attack;
 	}
 	
 	
@@ -32,14 +37,6 @@ public class Magician {
 		this.name = name;
 	}
 
-	
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
-	}
 
 	public int getLife() {
 		return life;
