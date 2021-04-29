@@ -29,6 +29,7 @@ public class Magician {
 	
 	public String toString() {
 		return name;
+
 	}
 	
 	

@@ -32,9 +32,7 @@ public class Warriors {
 	}
 	
 	
-	public String toString() {
-		return name;
-	}
+
 	
 	
 	// Getters et Setters
@@ -69,6 +67,11 @@ public class Warriors {
 
 	public void setAttack(int attack) {
 		this.attack = attack;
+	}
+
+
+	public String toString() {
+		return "name: " + name + ", life: " + life + ", attack: " + attack;
 	}
 
 }

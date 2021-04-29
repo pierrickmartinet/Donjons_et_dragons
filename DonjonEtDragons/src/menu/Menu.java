@@ -13,7 +13,7 @@ public class Menu {
 	Scanner keyboard = new Scanner(System.in);
 
 	public void execute() {
-
+		
 		// Phrase de bienvenue du jeu
 		System.out.println("Bonjour, bienvenue sur le jeu Donjons et dragons, veuillez saisir start ou exit");
 
@@ -60,7 +60,28 @@ public class Menu {
 			// Création d'un Warrior
 			Warriors warrior1 = new Warriors(characterWarriorName, 5, 5);
 			// Affichage du nom
-			System.out.println("Tu as choisis d'appeller ton warrior: " + warrior1);
+			System.out.println("Tu as choisis d'appeller ton warrior: " + warrior1.getName());
+			// Afficher les informations ou modifier le nom du personnage
+			System.out.println("Vous avez maintenant le choix entre modifier le nom du personnage ou afficher ses informations, saisis modifier ou afficher");
+			String addOrEdit = keyboard.nextLine();
+			// Tant que le joueur n'a pas saisi "afficher" ou "modifier" le programme redemande la saisie
+			while ((!addOrEdit.equals("afficher")) && (!addOrEdit.equals("modifier"))) {
+				System.out.println("Saisir modifier ou afficher");
+				addOrEdit = keyboard.nextLine();
+			}
+			// Si la saisie est égale à "afficher" le programme affiche les informations du personnage
+			if(addOrEdit.equals("afficher")) {
+				System.out.println(warrior1);
+			} 
+			// Sinon modifier le nom
+			else {
+				System.out.println("Saisis ton nouveau nom de personnage");
+				String editName = keyboard.nextLine();
+				warrior1.setName(editName);
+				System.out.println("Le nouveau nom de ton personnage est: " + warrior1.getName());
+			}
+			
+			
 		}
 		// Sinon un magicien est créé
 		else {
@@ -72,8 +93,29 @@ public class Menu {
 			Magician magician1 = new Magician(characterMagicianName, 5, 5);
 			// Affichage du nom
 			System.out.println("Tu as choisi d'appeller ton magicien: " + magician1);
+			
+			// Afficher les informations ou modifier le nom du personnage
+			System.out.println("Vous avez maintenant le choix entre modifier le nom du personnage ou afficher ses informations, saisis modifier ou afficher");
+			String addOrEdit = keyboard.nextLine();
+			// Tant que le joueur n'a pas saisi "afficher" ou "modifier" le programme redemande la saisie
+			while ((!addOrEdit.equals("afficher")) && (!addOrEdit.equals("modifier"))) {
+				System.out.println("Saisir modifier ou afficher");
+				addOrEdit = keyboard.nextLine();
+			}
+			// Si la saisie est égale à "afficher" le programme affiche les informations du personnage
+			if(addOrEdit.equals("afficher")) {
+				System.out.println(magician1);
+			} 
+			// Sinon modifier le nom
+			else {
+				System.out.println("Saisis ton nouveau nom de personnage");
+				String editName = keyboard.nextLine();
+				magician1.setName(editName);
+				System.out.println("Le nouveau nom de ton personnage est: " + magician1.getName());
+			}
 		}
-
+		
+	
 
 	}
 
