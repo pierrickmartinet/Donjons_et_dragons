@@ -2,7 +2,7 @@ package game;
 
 import java.util.Arrays;
 
-public class ToolsGame {
+public class KitGame {
 
 	// ATTRIBUTS
 
@@ -15,7 +15,7 @@ public class ToolsGame {
 	
 	
 	// CONSTRUCTEUR
-	public ToolsGame() {
+	public KitGame() {
 		boardGame = new int[64];
 		dice = dice();
 		playerPlace = 1;

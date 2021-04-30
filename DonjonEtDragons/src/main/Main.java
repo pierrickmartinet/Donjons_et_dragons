@@ -1,7 +1,5 @@
 package main;
 
-import game.Menu;
-import game.ToolsGame;
 import game.GameProgress;
 
 public class Main {
