@@ -7,6 +7,7 @@ public class Warriors {
 	private String name;
 	private int life;
 	private int attack;
+	private String bouclier;
 	
 	
 	// Constructeurs
@@ -15,6 +16,7 @@ public class Warriors {
 		name=null;
 		life=5;
 		attack=5;
+		bouclier="bouclier"; 
 	}
 	
 	public Warriors(String name) {
@@ -22,12 +24,14 @@ public class Warriors {
 		this.name=name;
 		life=5;
 		attack=5;
+		bouclier="bouclier";
 	}
 	
-	public Warriors(String name, int life, int attack) {
+	public Warriors(String name, int life, int attack, String bouclier) {
 		this.name = name;
 		this.life = life;
 		this.attack = attack;
+		this.bouclier=bouclier;
 	}
 	
 	
@@ -63,7 +67,7 @@ public class Warriors {
 
 	// Fonction toString
 	public String toString() {
-		return "Warrior name: " + name + ", life: " + life + ", attack: " + attack;
+		return "Personnage: Warrior Name: " + name + ", Life: " + life + ", Attack: " + attack + ", Boublier: " + bouclier;
 	}
 
 }

@@ -6,6 +6,7 @@ public class Magician {
 	private String name;
 	private int life;
 	private int attack;
+	private String philtres;
 	
 	
 	// Constructeurs
@@ -13,18 +14,21 @@ public class Magician {
 		name = null;
 		life = 5;
 		attack = 5;
+		philtres = "philtres";
 	}
 	
 	public Magician(String name) {
 		this.name = name;
 		life = 5;
 		attack = 5;
+		philtres = "philtres";
 	}
 	
-	public Magician(String name, int life, int attack) {
+	public Magician(String name, int life, int attack, String philtres) {
 		this.name = name;
 		this.life = life;
 		this.attack = attack;
+		this.philtres = philtres;
 	}
 	
 	
@@ -57,7 +61,7 @@ public class Magician {
 
 	// Fonction toString
 	public String toString() {
-		return "Magicien name: " + name + ", life: " + life + ", attack: " + attack;
+		return "Personnage: Magicien Name: " + name + ", Life: " + life + ", Attack: " + attack + ", Philtres: " + philtres;
 	}
 
 }

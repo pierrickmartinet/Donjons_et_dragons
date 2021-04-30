@@ -64,7 +64,7 @@ public class Menu {
 				System.exit(0);
 			}
 			// Création d'un Warrior
-			Warriors warrior1 = new Warriors(characterWarriorName, 5, 5);
+			Warriors warrior1 = new Warriors(characterWarriorName, 5, 5, "bouclier");
 			// Affichage du nom
 			System.out.println("Tu as choisis d'appeller ton warrior: " + warrior1.getName());
 			// Afficher les informations ou modifier le nom du personnage
@@ -108,7 +108,7 @@ public class Menu {
 				System.exit(0);
 			}
 			// Création d'un magicien
-			Magician magician1 = new Magician(characterMagicianName, 5, 5);
+			Magician magician1 = new Magician(characterMagicianName, 5, 5, "philtres");
 			// Affichage du nom
 			System.out.println("Tu as choisi d'appeller ton magicien: " + magician1.getName());
 
@@ -143,7 +143,25 @@ public class Menu {
 			System.out.println("A bientôt");
 			System.exit(0);
 		}
-
+		
+		// Démarrer ou quitter le jeu
+		System.out.println("On y est presque ! Saisis démarrer ou quitter le jeu");
+		String startOrExit = keyboard.nextLine();
+		
+		// Tant que l'utilisateur n'a pas saisi démarrer ou quitter la saisie est redemandée
+		while ((!startOrExit.equals("démarrer")) && (!startOrExit.equals("exit"))) {
+			System.out.println("Saisis démarrer ou quitter le jeu");
+			startOrExit = keyboard.nextLine();
+		}
+		// Si la saisie est démarrer alors le jeu démarre
+		if (startOrExit.equals("démarrer")) {
+			System.out.println("Le jeu démarre");
+		} 
+		// Sinon, le programme s'arrêtte
+		else {
+			System.out.println("A bientôt");
+			System.exit(0);
+		}
 	}
 
 	// Getters et Setters
