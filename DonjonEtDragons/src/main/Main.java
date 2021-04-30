@@ -1,7 +1,8 @@
 package main;
 
-// Import de la classe menu
-import menu.Menu;
+import game.Menu;
+import game.ToolsGame;
+import game.GameProgress;
 
 public class Main {
 	
@@ -9,10 +10,13 @@ public class Main {
 	public static void main(String[] args) {
 		
 		// Instenciation d'un objet de la classe menu
-		Menu menu = new Menu();
+		/*Menu menu = new Menu();
 		// Appel de la fonction execute() de la classe Menu qui lance le menu du jeu
-		menu.execute();
+		menu.execute();*/
+		
+		GameProgress gameProgress = new GameProgress();
+		
+		gameProgress.gameInProgress();
 		
 	}
-
 }

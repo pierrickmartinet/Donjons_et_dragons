@@ -1,4 +1,4 @@
-package menu;
+package game;
 
 // Import de la classe scanner permettant de lire les entrées clavier
 import java.util.Scanner;
