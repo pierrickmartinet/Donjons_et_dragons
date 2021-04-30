@@ -22,7 +22,8 @@ public class GameProgress {
 
 			// Récupération du chiffre tapé
 			int diceChoice = keyboard.nextInt();
-
+			
+			// Si le joueur tape 1, le dé se lance, si le joueur tape 2, le programme s'arrêtte
 			switch (diceChoice) {
 			case 1:
 				// Création d'un dé random par la création d'un objet kitGame
@@ -41,8 +42,20 @@ public class GameProgress {
 				System.out.println("Choix invalide");
 			}
 		}
-		System.out.println("Partie terminée");
-
+		
+		// Partie terminé, recommencer ou quitter ?
+		System.out.println("Partie terminée, tape 1 pour recommencer avec ton personnage ou tape 2 pour quitter le jeu");
+		int endGameChoice = keyboard.nextInt();
+		
+		switch(endGameChoice) {
+		case 1:
+			System.out.println("Recommencons alors!");
+			gameInProgress();
+		case 2:
+			System.out.println("A bientôt");
+			System.exit(0);
+		}
+		
 	}
 
 }
