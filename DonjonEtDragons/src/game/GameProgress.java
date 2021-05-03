@@ -24,10 +24,13 @@ public class GameProgress {
 
 	// METHODES
 	public void gameInProgress() {
+		
+		kitgame.setPlayerPlace(1);
 
 		// Tant que le joueur n'est pas au bout du plateau de jeu, il relance le dés
 		while (kitgame.getPlayerPlace() < kitgame.getBoardGame().length) {
 			
+			//Essaye de faire le programme
 			try {
 			
 			// Affichage new place du joueur
@@ -58,14 +61,17 @@ public class GameProgress {
 				
 			}
 			
+			// Si le joueur est au dela du plateau de jeu, lève une exception
 			if(kitgame.getPlayerPlace() > kitgame.getBoardGame().length) {
-				throw new PersonnageHorsPlateauException("va te faire mettre");
+				throw new PersonnageHorsPlateauException("Le personnage est hors plateau malheureux ! t'as fini ! ;)");
 				
 			}
-			
+			// Attrape le message de l'exception
 			} catch (PersonnageHorsPlateauException e){
 				System.out.println(e.getMessage());
+				// Remet le joueur à la case 64 du plateau de jeu
 				kitgame.setPlayerPlace(64);
+				System.out.println("Tu es sur la case n° " + kitgame.getPlayerPlace());
 			}
 			
 		}
