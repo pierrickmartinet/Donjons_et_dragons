@@ -35,6 +35,7 @@ public class BoardGame {
 
 
 	public void setPlayerPlace(int playerPlace) {
+
 		this.playerPlace = playerPlace;
 	}
 

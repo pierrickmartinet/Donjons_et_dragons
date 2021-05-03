@@ -2,6 +2,8 @@ package game;
 
 import java.util.Scanner;
 
+import exceptions.PersonnageHorsPlateauException;
+
 public class GameProgress {
 
 	// ATTRIBUTS
@@ -10,8 +12,7 @@ public class GameProgress {
 	Dice dice;
 	int diceChoice;
 	int endGameChoice;
-	
-	
+
 	// CONSTRUCTEUR
 	public GameProgress() {
 		keyboard = new Scanner(System.in);
@@ -26,7 +27,9 @@ public class GameProgress {
 
 		// Tant que le joueur n'est pas au bout du plateau de jeu, il relance le dés
 		while (kitgame.getPlayerPlace() < kitgame.getBoardGame().length) {
-
+			
+			try {
+			
 			// Affichage new place du joueur
 			System.out.println("Tu es sur la case n° " + kitgame.getPlayerPlace());
 
@@ -52,12 +55,26 @@ public class GameProgress {
 				System.exit(0);
 			default:
 				System.out.println("Choix invalide");
+				
 			}
+			
+			if(kitgame.getPlayerPlace() > kitgame.getBoardGame().length) {
+				throw new PersonnageHorsPlateauException("va te faire mettre");
+				
+			}
+			
+			} catch (PersonnageHorsPlateauException e){
+				System.out.println(e.getMessage());
+				kitgame.setPlayerPlace(64);
+			}
+			
 		}
+		
 		
 		// Partie terminé, recommencer ou quitter ?
 		System.out.println("Partie terminée, tape 1 pour recommencer avec ton personnage ou tape 2 pour quitter le jeu");
 		endGameChoice = keyboard.nextInt();
+		
 		
 		// Si le joueur tape 1 la partie recommence, si le joueur tape 2 le programme s'arrêtte
 		switch(endGameChoice) {
