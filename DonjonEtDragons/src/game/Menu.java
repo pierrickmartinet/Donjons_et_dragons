@@ -2,175 +2,115 @@ package game;
 
 // Import de la classe scanner permettant de lire les entrées clavier
 import java.util.Scanner;
-// Import de la classe Warriors se trouvant dans le package characters
-import characters.Warriors;
-//Import de la classe Magician se trouvant dans le package characters
+
+// Import de classes nécessaires au fonctionnement de la classe Menu
+import characters.Character;
+import characters.Warrior;
 import characters.Magician;
+
 
 public class Menu {
 
 	// ATTRIBUTS
-	Scanner keyboard = new Scanner(System.in);
+	private Scanner keyboard;
+	private Character player;
 
+	// CONSTRUCTEURS
+	public Menu() {
+		keyboard = new Scanner(System.in);
+	}
+
+	// METHODES
 	public void execute() {
 
-		// Phrase de bienvenue du jeu
-		System.out.println("Bonjour, bienvenue sur le jeu Donjons et dragons, veuillez saisir start ou exit");
+		System.out.println("Bonjour, bienvenue sur le jeu Donjons et dragons");
 
-		// Enregistrement du premier choix saisie dans la variable firstChoice
-		String firstChoice = keyboard.nextLine();
+		// Enregistrement du premier choix saisi
+		int firstChoice = questions("veuillez saisir 1 pour start ou 2 pour quitter le jeu");
 
-		// Tant que la saisie est différente de "start" ou "exit" le programme redemande
-		// la saise
-		while ((!firstChoice.equals("start")) && (!firstChoice.equals("exit"))) {
-
-			System.out.println("veuillez saisir start ou exit");
-			firstChoice = keyboard.nextLine();
-		}
-
-		// Si la saisie est start, le programme continue
-		if (firstChoice.equals("start")) {
-			System.out.println("C'est partit ! Choisis ton personnage : saisis warrior ou magicien");
-		}
-		// Sinon, le programme s'arrêtte
-		else {
+		switch (firstChoice) {
+		case 1:
+			System.out.println("Tu as choisis start !");
+			break;
+		case 2:
 			System.out.println("A bientôt");
 			System.exit(0);
+			break;
+		default:
+			System.out.println("Saisis 1 pour start ou 2 pour quitter le jeu");
 		}
 
-		// Enregistrement du choix du personnage saisie dans la variable characterChoice
-		String characterChoice = keyboard.nextLine();
+		// Enregistrement du choix personnage saisi
+		int characterChoice = questions(
+				"choisis ton personnage, tape 1 pour warrior, 2 pour magicien ou 3 pour quitter");
 
-		// Tant que la saisie est différente de "warrior" ou "magicien" le programme
-		// redemande de séléctionner un personnage
-		while ((!characterChoice.equals("warrior")) && (!characterChoice.equals("magicien"))
-				&& (!characterChoice.equals("exit"))) {
-
-			// Choix du personnage
-			System.out.println("Choisis ton personnage : saisis warrior ou magicien");
-			characterChoice = keyboard.nextLine();
-		}
-
-		// Si la saisie est "warrior"
-		if (characterChoice.equals("warrior")) {
-			System.out.println("Tu as choisis warrior !");
-			// Demande de nom de personnage
-			System.out.println("Choisis un nom pour ton personnage");
-			// Enregistrement de la saisie du nom dans la variable characterName
+		switch (characterChoice) {
+		case 1:
+			System.out.println("Tu as choisis warrior");
+			System.out.println("Choisis un nom");
 			String characterWarriorName = keyboard.nextLine();
-			// Si le nom est égal à "exit", le programme s'arrètte
-			if (characterWarriorName.equals("exit")) {
-				System.out.println("A bientôt");
-				System.exit(0);
-			}
 			// Création d'un Warrior
-			Warriors warrior1 = new Warriors(characterWarriorName, 5, 5, "bouclier");
-			// Affichage du nom
-			System.out.println("Tu as choisis d'appeller ton warrior: " + warrior1.getName());
-			// Afficher les informations ou modifier le nom du personnage
-			System.out.println(
-					"Vous avez maintenant le choix entre modifier le nom du personnage ou afficher ses informations, saisis modifier ou afficher");
-			String addOrEdit = keyboard.nextLine();
-			// Si la saisie est égale à exit le programme s'arrètte
-			if (addOrEdit.equals("exit")) {
-				System.out.println("A bientôt");
-				System.exit(0);
-			}
-			// Tant que le joueur n'a pas saisi "afficher" ou "modifier" le programme
-			// redemande la saisie
-			while ((!addOrEdit.equals("afficher")) && (!addOrEdit.equals("modifier"))) {
-				System.out.println("Saisir modifier ou afficher");
-				addOrEdit = keyboard.nextLine();
-			}
-			// Si la saisie est égale à "afficher" le programme affiche les informations du
-			// personnage
-			if (addOrEdit.equals("afficher")) {
-				System.out.println(warrior1);
-			}
-			// Sinon modifier le nom
-			else {
-				System.out.println("Saisis ton nouveau nom de personnage");
-				String editName = keyboard.nextLine();
-				warrior1.setName(editName);
-				System.out.println("Le nouveau nom de ton personnage est: " + warrior1.getName());
-			}
-
-		}
-		// Sinon si la saisie est "magicien"
-		else if (characterChoice.equals("magicien")) {
-			System.out.println("Tu as choisis magicien !");
-			System.out.println("Choisis un nom pour ton personnage");
-			// Enregistrement de la saisie du nom dans la variable characterName
+			player = new Warrior(characterWarriorName, 5, 5);
+			break;
+		case 2:
+			System.out.println("Tu as choisis magicien");
+			System.out.println("Choisis un nom");
 			String characterMagicianName = keyboard.nextLine();
-			// Si le nom est égal à "exit", le programme s'arrètte
-			if (characterMagicianName.equals("exit")) {
-				System.out.println("A bientôt");
-				System.exit(0);
-			}
-			// Création d'un magicien
-			Magician magician1 = new Magician(characterMagicianName, 5, 5, "philtres");
-			// Affichage du nom
-			System.out.println("Tu as choisi d'appeller ton magicien: " + magician1.getName());
-
-			// Afficher les informations ou modifier le nom du personnage
-			System.out.println(
-					"Vous avez maintenant le choix entre modifier le nom du personnage ou afficher ses informations, saisis modifier ou afficher");
-			String addOrEdit = keyboard.nextLine();
-			// Si la saisie est égale à exit le programme s'arrètte
-			if (addOrEdit.equals("exit")) {
-				System.out.println("A bientôt");
-				System.exit(0);
-			}
-			// Tant que le joueur n'a pas saisi "afficher" ou "modifier" le programme
-			// redemande la saisie
-			while ((!addOrEdit.equals("afficher")) && (!addOrEdit.equals("modifier"))) {
-				System.out.println("Saisir modifier ou afficher");
-				addOrEdit = keyboard.nextLine();
-			}
-			// Si la saisie est égale à "afficher" le programme affiche les informations du
-			// personnage
-			if (addOrEdit.equals("afficher")) {
-				System.out.println(magician1);
-			}
-			// Sinon modifier le nom
-			else {
-				System.out.println("Saisis ton nouveau nom de personnage");
-				String editName = keyboard.nextLine();
-				magician1.setName(editName);
-				System.out.println("Le nouveau nom de ton personnage est: " + magician1.getName());
-			}
-		} else {
+			// Création d'un Magicien
+			player = new Magician(characterMagicianName, 5, 5);
+			break;
+		case 3:
 			System.out.println("A bientôt");
 			System.exit(0);
+			break;
+		default:
+			System.out.println("Tape 1 pour warrior ou 2 pour magicien");
 		}
-		
+
+		// Affichage du nom
+		System.out.println("Tu as choisis d'appeller ton personnage: " + player.getName());
+
+		// Afficher les informations ou modifier le nom du personnage
+		int addOrEdit = questions("Tape 1 pour modifier ton nom, 2 pour afficher les info du perso ou 3 pour quitter");
+
+		switch (addOrEdit) {
+		case 1:
+			System.out.println("Saisis ton nouveau nom de personnage");
+			String editName = keyboard.nextLine();
+			player.setName(editName);
+			System.out.println("Le nouveau nom de ton personnage est: " + player.getName());
+			break;
+		case 2:
+			System.out.println(player);
+			break;
+		case 3:
+			System.out.println("A bientôt");
+			System.exit(0);
+			break;
+		}
+
 		// Démarrer ou quitter le jeu
-		System.out.println("On y est presque ! Saisis démarrer ou quitter le jeu");
-		String startOrExit = keyboard.nextLine();
-		
-		// Tant que l'utilisateur n'a pas saisi démarrer ou quitter la saisie est redemandée
-		while ((!startOrExit.equals("démarrer")) && (!startOrExit.equals("exit"))) {
-			System.out.println("Saisis démarrer ou quitter le jeu");
-			startOrExit = keyboard.nextLine();
-		}
-		// Si la saisie est démarrer alors le jeu démarre
-		if (startOrExit.equals("démarrer")) {
+		int startOrExit = questions("On y est presque ! Tape 1 pour démarrer ou 2 pour quitter le jeu");
+
+		switch (startOrExit) {
+		case 1:
 			System.out.println("Le jeu démarre");
-		} 
-		// Sinon, le programme s'arrêtte
-		else {
+			break;
+		case 2:
 			System.out.println("A bientôt");
 			System.exit(0);
+			break;
 		}
+
 	}
 
-	// Getters et Setters
-	public Scanner getKeyboard() {
-		return keyboard;
-	}
-
-	public void setKeyboard(Scanner keyboard) {
-		this.keyboard = keyboard;
+	public int questions(String question) {
+		int response;
+		System.out.println(question);
+		response = keyboard.nextInt();
+		// Vide le tampon du clavier qui contient la touche Entrée
+		keyboard.nextLine();
+		return response;
 	}
 
 }

@@ -5,11 +5,24 @@ import java.util.Scanner;
 public class GameProgress {
 
 	// ATTRIBUTS
-	Scanner keyboard = new Scanner(System.in);
+	Scanner keyboard;
+	BoardGame kitgame;
+	Dice dice;
+	int diceChoice;
+	int endGameChoice;
+	
+	
+	// CONSTRUCTEUR
+	public GameProgress() {
+		keyboard = new Scanner(System.in);
+		kitgame = new BoardGame();
+		dice = new Dice();
+		diceChoice = 0;
+		endGameChoice = 0;
+	}
 
+	// METHODES
 	public void gameInProgress() {
-
-		KitGame kitgame = new KitGame();
 
 		// Tant que le joueur n'est pas au bout du plateau de jeu, il relance le dés
 		while (kitgame.getPlayerPlace() < kitgame.getBoardGame().length) {
@@ -21,13 +34,13 @@ public class GameProgress {
 			System.out.println("tape 1 pour lancer le dé ou 2 pour quitter le jeu");
 
 			// Récupération du chiffre tapé
-			int diceChoice = keyboard.nextInt();
+			diceChoice = keyboard.nextInt();
 			
 			// Si le joueur tape 1, le dé se lance, si le joueur tape 2, le programme s'arrêtte
 			switch (diceChoice) {
 			case 1:
 				// Création d'un dé random par la création d'un objet kitGame
-				KitGame dice = new KitGame();
+				dice = new Dice();
 				// Affichage du dé à chaque tour
 				System.out.println("Le dé affiche " + dice.getDice());
 				// La position du joueur change en fonction du dé
@@ -37,7 +50,6 @@ public class GameProgress {
 				// Quitte le jeu
 				System.out.println("A bientôt");
 				System.exit(0);
-				break;
 			default:
 				System.out.println("Choix invalide");
 			}
@@ -45,12 +57,14 @@ public class GameProgress {
 		
 		// Partie terminé, recommencer ou quitter ?
 		System.out.println("Partie terminée, tape 1 pour recommencer avec ton personnage ou tape 2 pour quitter le jeu");
-		int endGameChoice = keyboard.nextInt();
+		endGameChoice = keyboard.nextInt();
 		
+		// Si le joueur tape 1 la partie recommence, si le joueur tape 2 le programme s'arrêtte
 		switch(endGameChoice) {
 		case 1:
 			System.out.println("Recommencons alors!");
 			gameInProgress();
+			break;
 		case 2:
 			System.out.println("A bientôt");
 			System.exit(0);
