@@ -57,7 +57,7 @@ public class Menu {
 			System.out.println("Choisis un nom");
 			String characterMagicianName = keyboard.nextLine();
 			// Création d'un Magicien
-			player = new Magician(characterMagicianName, 5, 5);
+			player = new Magician(characterMagicianName, 3, 8);
 			break;
 		case 3:
 			System.out.println("A bientôt");
