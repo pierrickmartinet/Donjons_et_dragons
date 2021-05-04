@@ -2,6 +2,7 @@ package game;
 
 import java.util.Scanner;
 
+import boardCase.BoardCase;
 import exceptions.PersonnageHorsPlateauException;
 
 public class GameProgress {
@@ -10,6 +11,7 @@ public class GameProgress {
 	Scanner keyboard;
 	BoardGame kitgame;
 	Dice dice;
+	BoardCase boardCase;
 
 	
 	// CONSTRUCTEUR
@@ -17,21 +19,24 @@ public class GameProgress {
 		keyboard = new Scanner(System.in);
 		kitgame = new BoardGame();
 		dice = new Dice();
+		
 	}
 
 	// METHODES
 	public void gameInProgress() {
 		
-		kitgame.setPlayerPlace(1);
+		kitgame.setPlayerPlace(0);
+		
+		// Affichage new place du joueur
+		System.out.println("Tu es sur la case n° 0, cette case est vide");
 
 		// Tant que le joueur n'est pas au bout du plateau de jeu, il relance le dés
-		while (kitgame.getPlayerPlace() < kitgame.getBoardGame().length) {
+		while (kitgame.getPlayerPlace() < 64) {
 			
 			//Essaye de faire le programme
 			try {
 			
-			// Affichage new place du joueur
-			System.out.println("Tu es sur la case n° " + kitgame.getPlayerPlace());
+
 
 			// Question relancer le dé
 			System.out.println("tape 1 pour lancer le dé ou 2 pour quitter le jeu");
@@ -54,7 +59,7 @@ public class GameProgress {
 			}
 			
 			// Si le joueur est au dela du plateau de jeu, lève une exception
-			if(kitgame.getPlayerPlace() > kitgame.getBoardGame().length) {
+			if(kitgame.getPlayerPlace() > 64) {
 				throw new PersonnageHorsPlateauException("Le personnage est hors plateau malheureux ! t'as fini ! ;)");
 				
 			}
@@ -94,6 +99,11 @@ public class GameProgress {
 		System.out.println("Le dé affiche " + dice.getDice());
 		// La position du joueur change en fonction du dé
 		kitgame.setPlayerPlace(kitgame.getPlayerPlace() + dice.getDice());
+		// Affichage new place du joueur
+		System.out.print("Tu es sur la case n° " + kitgame.getPlayerPlace() +", ");
+		// Le contenue de la case
+		System.out.println(kitgame.getBoardCases().get(kitgame.getPlayerPlace()));
+
 	}
 	
 
