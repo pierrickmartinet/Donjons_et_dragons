@@ -1,5 +1,6 @@
 package boardCase;
 
+import characters.Personnage;
 import enemy.Enemy;
 
 public class EnemyCase extends BoardCase {
@@ -11,6 +12,13 @@ public class EnemyCase extends BoardCase {
 	public EnemyCase(Enemy enemy) {
 		
 		this.enemy = enemy;
+		
+	}
+	
+	//METHODES
+	@Override
+	public void interaction(Personnage player) {
+
 		
 	}
 

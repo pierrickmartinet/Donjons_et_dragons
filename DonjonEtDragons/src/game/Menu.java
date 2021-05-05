@@ -4,8 +4,10 @@ package game;
 import java.util.Scanner;
 
 // Import de classes nécessaires au fonctionnement de la classe Menu
-import characters.Character;
+import characters.Personnage;
 import characters.Warrior;
+import magicianWeapons.MagicianWeapon;
+import warriorWeapons.WarriorWeapon;
 import characters.Magician;
 
 
@@ -13,11 +15,15 @@ public class Menu {
 
 	// ATTRIBUTS
 	private Scanner keyboard;
-	private Character player;
+	private Personnage player;
+	private WarriorWeapon warriorWeapon;
+	private MagicianWeapon magicianWeapon;
 
 	// CONSTRUCTEURS
 	public Menu() {
 		keyboard = new Scanner(System.in);
+		warriorWeapon = null;
+		magicianWeapon = null;
 	}
 
 	// METHODES
@@ -50,14 +56,14 @@ public class Menu {
 			System.out.println("Choisis un nom");
 			String characterWarriorName = keyboard.nextLine();
 			// Création d'un Warrior
-			player = new Warrior(characterWarriorName, 5, 5);
+			player = new Warrior(characterWarriorName, 5, 5, warriorWeapon);
 			break;
 		case 2:
 			System.out.println("Tu as choisis magicien");
 			System.out.println("Choisis un nom");
 			String characterMagicianName = keyboard.nextLine();
 			// Création d'un Magicien
-			player = new Magician(characterMagicianName, 3, 8);
+			player = new Magician(characterMagicianName, 3, 8, magicianWeapon);
 			break;
 		case 3:
 			System.out.println("A bientôt");
@@ -81,7 +87,7 @@ public class Menu {
 			System.out.println("Le nouveau nom de ton personnage est: " + player.getName());
 			break;
 		case 2:
-			System.out.println(player);
+			System.out.println(player + " Skills: " + player.getWeaponName());
 			break;
 		case 3:
 			System.out.println("A bientôt");
@@ -112,5 +118,17 @@ public class Menu {
 		keyboard.nextLine();
 		return response;
 	}
+
+	
+	// GETTERS ET SETTERS
+	public Personnage getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Personnage player) {
+		this.player = player;
+	}
+	
+
 
 }

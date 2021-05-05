@@ -1,6 +1,6 @@
 package characters;
 
-public abstract class Character {
+public abstract class Personnage {
 	
 	
 	// ATTRIBUTS
@@ -10,20 +10,23 @@ public abstract class Character {
 	
 	
 	// CONSTRUCTEURS
-	public Character() {
+	public Personnage() {
 		 
 	}
 	
-	public Character(String name) {
+	public Personnage(String name) {
 		this.name = name;
 	}
 	
-	public Character(String name, int life, int attack) {
+	public Personnage(String name, int life, int attack) {
 		this.name = name;
 		this.life = life;
 		this.attack = attack;
 	}
-
+	
+	
+	// METHODE
+	public abstract String getWeaponName();
 	
 	// GETTERS ET SETTERS
 	
@@ -51,11 +54,14 @@ public abstract class Character {
 		this.attack = attack;
 	}
 
-	
+	// TO STRING
 	@Override
 	public String toString() {
-		return "Ton personnage: Nom: " + name + ", Vie: " + life + ", Attaque: " + attack;
+		return "Nom: " + name + ", Vie: " + life + ", Attaque: " + attack;
 	}
+
+	
+
 	
 	
 }

@@ -8,20 +8,23 @@ import exceptions.PersonnageHorsPlateauException;
 public class GameProgress {
 
 	// ATTRIBUTS
-	Scanner keyboard;
-	BoardGame kitgame;
-	Dice dice;
-	BoardCase boardCase;
+	private Scanner keyboard;
+	private BoardGame kitgame;
+	private Dice dice;
+	private BoardCase boardCase;
+	private Menu menu;
 
 	
 	// CONSTRUCTEUR
-	public GameProgress() {
+	public GameProgress(Menu menu) {
 		keyboard = new Scanner(System.in);
 		kitgame = new BoardGame();
 		dice = new Dice();
+		this.menu = menu;
 		
 	}
 
+	
 	// METHODES
 	public void gameInProgress() {
 		
@@ -93,17 +96,25 @@ public class GameProgress {
 	}
 	
 	public void playTurn() {
-		// Création d'un dé random par la création d'un objet kitGame
+		
+		// Création d'un dé random par la création d'un objet Dice
 		dice = new Dice();
 		// Affichage du dé à chaque tour
 		System.out.println("Le dé affiche " + dice.getDice());
 		// La position du joueur change en fonction du dé
-		kitgame.setPlayerPlace(kitgame.getPlayerPlace() + dice.getDice());
+		//kitgame.setPlayerPlace(kitgame.getPlayerPlace() + dice.getDice());
+		kitgame.setPlayerPlace(kitgame.getPlayerPlace() + 1);
 		// Affichage new place du joueur
-		System.out.print("Tu es sur la case n° " + kitgame.getPlayerPlace() +", ");
+		System.out.print("Tu est sur la case n° " + kitgame.getPlayerPlace() +", ");
 		// Le contenue de la case
-		System.out.println(kitgame.getBoardCases().get(kitgame.getPlayerPlace()));
-
+		//System.out.println(kitgame.getBoardCases().get(kitgame.getPlayerPlace()));
+		// Interraction cases
+		kitgame.getBoardCases().get(kitgame.getPlayerPlace()).interaction(menu.getPlayer());
+		// Affichage stats joueur
+		System.out.println("Voici tes nouvelles stats " + menu.getPlayer().getName() + ":");
+		System.out.println("Vie: " + menu.getPlayer().getLife());
+		System.out.println("Attaque: " + menu.getPlayer().getAttack());
+		System.out.println("Skills: " + menu.getPlayer().getWeaponName());
 	}
 	
 
