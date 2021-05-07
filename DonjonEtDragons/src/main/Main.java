@@ -13,7 +13,7 @@ public class Main {
 		// Appel de la fonction execute() de la classe Menu qui lance le menu du jeu
 		menu.execute();
 		// Instenciation d'un objet de la classe GameProgress
-		GameProgress gameProgress = new GameProgress(menu);
+		GameProgress gameProgress = new GameProgress(menu.getPlayer());
 		// Appel de la fonction gameInProgress() de la classe GameProgress qui démarre le jeu
 		gameProgress.gameInProgress();
 		

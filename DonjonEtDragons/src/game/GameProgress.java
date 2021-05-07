@@ -3,6 +3,7 @@ package game;
 import java.util.Scanner;
 
 import boardCase.BoardCase;
+import characters.Personnage;
 import exceptions.PersonnageHorsPlateauException;
 
 public class GameProgress {
@@ -12,19 +13,21 @@ public class GameProgress {
 	private BoardGame kitgame;
 	private Dice dice;
 	private BoardCase boardCase;
-	private Menu menu;
+	private Personnage perso;
+	
 
 	
 	// CONSTRUCTEUR
-	public GameProgress(Menu menu) {
+	public GameProgress(Personnage perso) {
 		keyboard = new Scanner(System.in);
 		kitgame = new BoardGame();
 		dice = new Dice();
-		this.menu = menu;
-		
+		this.perso = perso;
 	}
 
 	
+
+
 	// METHODES
 	public void gameInProgress() {
 		
@@ -109,12 +112,12 @@ public class GameProgress {
 		// Le contenue de la case
 		//System.out.println(kitgame.getBoardCases().get(kitgame.getPlayerPlace()));
 		// Interraction cases
-		kitgame.getBoardCases().get(kitgame.getPlayerPlace()).interaction(menu.getPlayer());
+		kitgame.getBoardCases().get(kitgame.getPlayerPlace()).interaction(perso);
 		// Affichage stats joueur
-		System.out.println("Voici tes nouvelles stats " + menu.getPlayer().getName() + ":");
-		System.out.println("Vie: " + menu.getPlayer().getLife());
-		System.out.println("Attaque: " + menu.getPlayer().getAttack());
-		System.out.println("Skills: " + menu.getPlayer().getWeaponName());
+		System.out.println("Voici tes nouvelles stats " + perso.getName() + ":");
+		System.out.println("Vie: " + perso.getLife());
+		System.out.println("Attaque: " + perso.getAttack());
+		System.out.println("Skills: " + perso.getWeaponName());
 	}
 	
 
