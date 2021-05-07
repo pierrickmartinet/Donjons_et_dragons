@@ -12,7 +12,6 @@ public class GameProgress {
 	private Scanner keyboard;
 	private BoardGame kitgame;
 	private Dice dice;
-	private BoardCase boardCase;
 	private Personnage perso;
 	
 
@@ -41,9 +40,6 @@ public class GameProgress {
 			
 			//Essaye de faire le programme
 			try {
-			
-
-
 			// Question relancer le dé
 			System.out.println("tape 1 pour lancer le dé ou 2 pour quitter le jeu");
 
@@ -105,8 +101,7 @@ public class GameProgress {
 		// Affichage du dé à chaque tour
 		System.out.println("Le dé affiche " + dice.getDice());
 		// La position du joueur change en fonction du dé
-		//kitgame.setPlayerPlace(kitgame.getPlayerPlace() + dice.getDice());
-		kitgame.setPlayerPlace(kitgame.getPlayerPlace() + 1);
+		kitgame.setPlayerPlace(kitgame.getPlayerPlace() + dice.getDice());
 		// Affichage new place du joueur
 		System.out.print("Tu est sur la case n° " + kitgame.getPlayerPlace() +", ");
 		// Le contenue de la case

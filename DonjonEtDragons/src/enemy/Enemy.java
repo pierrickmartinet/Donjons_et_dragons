@@ -45,6 +45,14 @@ public abstract class Enemy {
 	public void setAttack(int attack) {
 		this.attack = attack;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Nom: " + name + ", Vie: " + life + ", Attaque: " + attack;
+	}
+	
+	
 	
 	
 
