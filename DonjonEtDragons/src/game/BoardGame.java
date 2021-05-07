@@ -26,18 +26,14 @@ import warriorWeapons.Sword;
 public class BoardGame {
 
 	// ATTRIBUTS
-
-	// Place du joueur
-	private int playerPlace;
-
 	// Création d'une Array List qui accepte uniquement des cases du plateau
 	private List<BoardCase> boardCases = new ArrayList<BoardCase>();
 
+	
 	// CONSTRUCTEUR
 	public BoardGame() {
 
-		// PLace du joueur de la case 1 à 64
-		playerPlace = 0;
+		
 		// case 0
 		boardCases.add(new EmptyCase());
 		// case 1
@@ -174,15 +170,6 @@ public class BoardGame {
 
 	
 	// Getters et Setters
-
-	public int getPlayerPlace() {
-		return playerPlace;
-	}
-
-	public void setPlayerPlace(int playerPlace) {
-
-		this.playerPlace = playerPlace;
-	}
 
 	public List<BoardCase> getBoardCases() {
 		return boardCases;

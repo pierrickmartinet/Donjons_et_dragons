@@ -13,7 +13,7 @@ public class GameProgress {
 	private BoardGame kitgame;
 	private Dice dice;
 	private Personnage perso;
-	
+	private PlayerPlace playerPlace;
 
 	
 	// CONSTRUCTEUR
@@ -21,6 +21,7 @@ public class GameProgress {
 		keyboard = new Scanner(System.in);
 		kitgame = new BoardGame();
 		dice = new Dice();
+		playerPlace = new PlayerPlace();
 		this.perso = perso;
 	}
 
@@ -30,13 +31,13 @@ public class GameProgress {
 	// METHODES
 	public void gameInProgress() {
 		
-		kitgame.setPlayerPlace(0);
+		playerPlace.setPlayerPlace(0);
 		
 		// Affichage new place du joueur
 		System.out.println("Tu es sur la case n° 0, cette case est vide");
 
 		// Tant que le joueur n'est pas au bout du plateau de jeu, il relance le dés
-		while (kitgame.getPlayerPlace() < 64) {
+		while (playerPlace.getPlayerPlace() < 64) {
 			
 			//Essaye de faire le programme
 			try {
@@ -61,7 +62,7 @@ public class GameProgress {
 			}
 			
 			// Si le joueur est au dela du plateau de jeu, lève une exception
-			if(kitgame.getPlayerPlace() > 64) {
+			if(playerPlace.getPlayerPlace() > 64) {
 				throw new PersonnageHorsPlateauException("Le personnage est hors plateau malheureux ! t'as fini ! ;)");
 				
 			}
@@ -69,8 +70,8 @@ public class GameProgress {
 			} catch (PersonnageHorsPlateauException e){
 				System.out.println(e.getMessage());
 				// Remet le joueur à la case 64 du plateau de jeu
-				kitgame.setPlayerPlace(64);
-				System.out.println("Tu es sur la case n° " + kitgame.getPlayerPlace());
+				playerPlace.setPlayerPlace(64);
+				System.out.println("Tu es sur la case n° " + playerPlace.getPlayerPlace());
 			}
 			
 		}
@@ -101,13 +102,13 @@ public class GameProgress {
 		// Affichage du dé à chaque tour
 		System.out.println("Le dé affiche " + dice.getDice());
 		// La position du joueur change en fonction du dé
-		kitgame.setPlayerPlace(kitgame.getPlayerPlace() + dice.getDice());
+		playerPlace.setPlayerPlace(playerPlace.getPlayerPlace() + dice.getDice());
 		// Affichage new place du joueur
-		System.out.print("Tu est sur la case n° " + kitgame.getPlayerPlace() +", ");
+		System.out.print("Tu est sur la case n° " + playerPlace.getPlayerPlace() +", ");
 		// Le contenue de la case
 		//System.out.println(kitgame.getBoardCases().get(kitgame.getPlayerPlace()));
 		// Interraction cases
-		kitgame.getBoardCases().get(kitgame.getPlayerPlace()).interaction(perso);
+		kitgame.getBoardCases().get(playerPlace.getPlayerPlace()).interaction(perso);
 		// Affichage stats joueur
 		System.out.println("Voici tes nouvelles stats " + perso.getName() + ":");
 		System.out.println("Vie: " + perso.getLife());
