@@ -4,8 +4,10 @@ import magicianWeapons.MagicianWeapon;
 
 public class Magician extends Personnage{
 	
+	
 	// ATTRIBUTS
 	private MagicianWeapon power;
+	
 	
 	// CONSTRUCTEURS
 	public Magician() {
@@ -22,6 +24,7 @@ public class Magician extends Personnage{
 		
 	}
 
+	
 	// GETTERS ET SETTERS
 	public MagicianWeapon getPower() {
 		return power;
@@ -30,6 +33,7 @@ public class Magician extends Personnage{
 	public void setPower(MagicianWeapon power) {
 		this.power = power;
 	}
+	
 	
 	// METHODES
 	@Override

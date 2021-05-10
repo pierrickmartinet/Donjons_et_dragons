@@ -4,22 +4,14 @@ import characters.Personnage;
 
 public class EmptyCase extends BoardCase {
 	
-	// ATTRIBUTS
-	private String caseVide = "c'est une case est vide";
-
 	
 	// METHODES
 
 	@Override
 	public void interaction(Personnage player) {
 		
-		
-	}
+	System.out.println("C'est une case vide, ouf !");
 	
-	// TO STRING
-	@Override
-	public String toString() {
-		return caseVide;
 	}
 
 }

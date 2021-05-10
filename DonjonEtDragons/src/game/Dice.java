@@ -9,20 +9,19 @@ public class Dice {
 
 	// CONSTRUCTEUR
 	public Dice() {
-		dice = dice();
+		dice = 0;
 	}
 	
 	// METHODES
 	
 	// Fonction qui lance un dés virtuel et renvoie un chiffre random entre 1 et 6
-	public int dice() {
+	public void throwDice() {
 		
 		int min = 1;
 		int max = 6;
 
-		int randomValue = min + (int) (Math.random() * ((max - min) + 1));
+		dice = min + (int) (Math.random() * ((max - min) + 1));
 
-		return randomValue;
 	}
 
 	// GETTERS ET SETTERS

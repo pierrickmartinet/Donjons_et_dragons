@@ -46,14 +46,17 @@ public abstract class Enemy {
 		this.attack = attack;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Nom: " + name + ", Vie: " + life + ", Attaque: " + attack;
+	
+	// METHODES
+	
+	public String infoNameEnemy() {
+		// Quel ennemi se trouve sur la case
+		return "c'est une case ennemie, un " + name + " s'y trouve";
 	}
 	
-	
-	
+	public String infoStatEnemy() {
+		return "Nom: " + name + ", Vie: " + life + ", Attaque: " + attack;
+	}
 	
 
 }

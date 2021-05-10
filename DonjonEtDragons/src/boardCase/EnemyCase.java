@@ -2,11 +2,14 @@ package boardCase;
 
 import characters.Personnage;
 import enemy.Enemy;
+import game.Menu;
+import game.Dice;
 
 public class EnemyCase extends BoardCase {
 
 	// ATTRIBUTS
 	private Enemy enemy;
+	
 
 	// CONSTRUCTEURS
 	public EnemyCase(Enemy enemy) {
@@ -14,15 +17,11 @@ public class EnemyCase extends BoardCase {
 		this.enemy = enemy;
 
 	}
+	
 
 	// METHODES
 	@Override
 	public void interaction(Personnage player) {
-		// Quel ennemi se trouve sur la case
-		System.out.println("c'est une case ennemie, un " + enemy.getName() + " s'y trouve");
-
-		// Stats ennemie
-		System.out.println("Voici ses stats, " + enemy);
 
 		// Tant que le joueur et l'ennemi ont des point de vie supérieur à zéro
 		while ((player.getLife()) > 0 && (enemy.getLife() > 0)) {
@@ -53,4 +52,16 @@ public class EnemyCase extends BoardCase {
 			}
 		}
 	}
+
+	// GETTERS ET SETTERS
+
+	public Enemy getEnemy() {
+		return enemy;
+	}
+
+
+	public void setEnemy(Enemy enemy) {
+		this.enemy = enemy;
+	}
+	
 }
