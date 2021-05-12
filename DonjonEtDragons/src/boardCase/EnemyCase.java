@@ -3,13 +3,27 @@ package boardCase;
 import characters.Personnage;
 import enemy.Enemy;
 
+/**
+ * EnemyCase est une classe representant une case ennemie du plateau de jeu
+ * @author piouk
+ * @version 1.0
+ */
 public class EnemyCase extends BoardCase {
 
 	// ATTRIBUTS
+	/**
+	 * Attribut enemy de type Enemy representant un ennemi (dragon, gobelin ou mage)
+	 * chaque ennemie dispose de point de vie, de point d'attaque et d'un nom
+	 * les dragons, gobelins et mage sont héritiers de la classe Enemy
+	 */
 	private Enemy enemy;
 	
 
 	// CONSTRUCTEURS
+	/**
+	 * Lors de l'instanciation d'un objet EnemyCase, l'ennemie passé en paramètre de ce constructeur devient l'ennemie de la classe EnemyCase
+	 * @param enemy representant un ennemie sur une case ennemie
+	 */
 	public EnemyCase(Enemy enemy) {
 
 		this.enemy = enemy;
@@ -18,7 +32,13 @@ public class EnemyCase extends BoardCase {
 	
 
 	// METHODES
-	@Override
+	/**
+	 *  Méthode representant un combat entre joueur et ennemies
+	 *  Le joueur attaque en premier, s'il bat l'énnemie, le combat s'arrête et le jeu continu
+	 *  Sinon l'ennemie attaque le joueur et ainsi de suite jusqu'à ce que le joueur ou l'ennemie n'ai plus de PV
+	 *  Si le joueur n'a plus de PV, le jeu s'arrête
+	 *  @param player Le joueur qui combat un ennemie
+	 */
 	public void interaction(Personnage player) {
 
 		// Tant que le joueur et l'ennemi ont des point de vie supérieur à zéro
@@ -51,6 +71,7 @@ public class EnemyCase extends BoardCase {
 		}
 	}
 
+	
 	// GETTERS ET SETTERS
 
 	public Enemy getEnemy() {

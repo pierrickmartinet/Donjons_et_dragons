@@ -8,18 +8,38 @@ import magicianWeapons.MagicianWeapon;
 import warriorWeapons.WarriorWeapon;
 import characters.Magician;
 
-
+/**
+ * Menu represente le menu d'entrée du jeu
+ * @author piouk
+ * @version 1.0
+ */
 public class Menu {
 
 	
 	// ATTRIBUTS
+	/**
+	 * keyboard: scanner permettant de lire les entrées clavier de l'utilisateur
+	 */
 	private Scanner keyboard;
+	/**
+	 * player: joueur
+	 */
 	private Personnage player;
+	/**
+	 * warriorWeapon: représente une arme de guerrier (null au départ)
+	 */
 	private WarriorWeapon warriorWeapon;
+	/**
+	 * magicianWeapon: représente une arme de magicien (null au départ)
+	 */
 	private MagicianWeapon magicianWeapon;
 
 	
 	// CONSTRUCTEURS
+	/**
+	 * Le constructeur de Menu permet l'instanciation d'un scanner lisant les entrées utilisateur, 
+	 * il défini une valeur nulle aux armes des personnage utile lors de l'instanciation de ceux ci
+	 */
 	public Menu() {
 		keyboard = new Scanner(System.in);
 		warriorWeapon = null;
@@ -28,6 +48,10 @@ public class Menu {
 
 	
 	// METHODES
+	/**
+	 * La méthode execute permet le déroulé du menu du jeu
+	 * elle permet à l'utilisateur de démarrer la partie, choisir son héro, le nom du héro
+	 */
 	public void execute() {
 
 		System.out.println("Bonjour, bienvenue sur le jeu Donjons et dragons");
@@ -110,7 +134,11 @@ public class Menu {
 		}
 	}
 
-	
+	/**
+	 * La méthode question permet de poser une question à un utilisateur et de retourner un entier representant sa réponse 
+	 * @param question la question à poser à l'utilisateur (type: String)
+	 * @return un entier comportant l'entrée clavier de l'utilisateur pour la question posé
+	 */
 	public int questions(String question) {
 		int response;
 		System.out.println(question);

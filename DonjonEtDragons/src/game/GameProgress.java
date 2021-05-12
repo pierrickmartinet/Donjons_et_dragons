@@ -5,17 +5,40 @@ import boardCase.BoardCase;
 import boardCase.EnemyCase;
 import characters.Personnage;
 import exceptions.PersonnageHorsPlateauException;
-
+/**
+ * GameProgress represente une partie de jeu
+ * @author piouk
+ * @version 1.0
+ */
 public class GameProgress {
 
 	// ATTRIBUTS
+	/**
+	 * keyboard: scanner permettant de lire les entrées clavier de l'utilisateur
+	 */
 	private Scanner keyboard;
+	/**
+	 * boardgame: plateau de jeu de 64 cases
+	 */
 	private BoardGame boardGame;
+	/**
+	 * dice: Dé random à 6 face
+	 */
 	private Dice dice;
+	/**
+	 * perso: personnage choisi par l'utilisateur 
+	 */
 	private Personnage perso;
+	/**
+	 * playerPlace: position du joueur
+	 */
 	private PlayerPlace playerPlace;
 
 	// CONSTRUCTEUR
+	/**
+	 * Le constructeur d'une progression de partie  permet d'instancier une partie de jeu avec un plateau de jeu, un dé, un personnage et une position de joueur
+	 * @param perso le personnage du joueur
+	 */
 	public GameProgress(Personnage perso) {
 
 		keyboard = new Scanner(System.in);
@@ -29,6 +52,12 @@ public class GameProgress {
 	// METHODES
 
 	// Fonction de jeu
+	/**
+	 * La méthode gameInProgress() permet tout le dérouler d'une partie de jeu tant que le joueur n'a pas atteint la fin du plateau de jeu en vie
+	 * Tant que le joueur n'a pas atteint la victoire ou la défaite, elle appelle une fonction qui permet de rejouer un tour
+	 * Le joueur peut à tout moment grace au scanner, jouer ou quitter la partie
+	 * Lorsque le joueur arrive en fin de plateau elle appelle une autre fonction qui permet de recommencer le jeu 
+	 */
 	public void gameInProgress() {
 
 		playerPlace.setPlayerPlace(0);
@@ -74,7 +103,14 @@ public class GameProgress {
 		replay();
 	}
 
-	// Fonction jouer un tour
+	
+	/**
+	 * La fonction playTurn() permet de jouer un tour
+	 * elle lance le dé, adapte la position du joueur en fonction du lancé
+	 * elle permet d'intéragir avec les différentes cases du plateau de jeu
+	 * elle permet également la possibilité de combattre ou fuir lors d'un combat sur une case de type EnemyCase
+	 * @throws PersonnageHorsPlateauException renvoie une exception lorsque le personnage est hors du plateau de jeu
+	 */
 	public void playTurn() throws PersonnageHorsPlateauException {
 
 		dice.throwDice();
@@ -124,6 +160,9 @@ public class GameProgress {
 
 	
 	// Fonction replay
+	/**
+	 * La méthode replay() permet de recommencer une partie avec le même personnage que la partie précédente ou de quitter le jeu en fin de partie
+	 */
 	public void replay() {
 
 		System.out.println("Partie terminée, tape 1 pour recommencer ou 2 pour quitter le jeu");

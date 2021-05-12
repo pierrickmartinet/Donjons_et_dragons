@@ -20,15 +20,26 @@ import potions.BigPotion;
 import potions.StandardPotion;
 import warriorWeapons.Mace;
 import warriorWeapons.Sword;
-
+/**
+ * BoardGame represente un plateau de jeu de 64 cases sous forme de liste
+ * @author piouk
+ * @version 1.0
+ */
 public class BoardGame {
 
 	// ATTRIBUTS
 	// Création d'une Array List qui accepte uniquement des cases du plateau
+	/**
+	 * boardCases : création d'une liste
+	 * Attention, cette liste accepte uniquement des types BoardCase
+	 */
 	private List<BoardCase> boardCases = new ArrayList<BoardCase>();
 
 	
 	// CONSTRUCTEUR
+	/**
+	 * Le constructeur permet de construire le plateau de jeu avec le contenu des différentes cases du plateau
+	 */
 	public BoardGame() {
 
 		// case 0
@@ -160,14 +171,17 @@ public class BoardGame {
 		// case 63
 		boardCases.add(new EmptyCase());
 		
+		
 		// Mélange de la liste
+		/**
+		 * Permet de mélanger les cases du plateau de jeu
+		 */
 		Collections.shuffle(boardCases);
 
 	}
 
 	
-	// Getters et Setters
-
+	// GETTERS ET SETTERS
 	public List<BoardCase> getBoardCases() {
 		return boardCases;
 	}
