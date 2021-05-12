@@ -68,6 +68,12 @@ public class GameProgress {
 		// Tant que le joueur n'est pas au bout du plateau de jeu, il relance le dés
 		while (playerPlace.getPlayerPlace() < 64) {
 
+			// Si le perso est mort, recommencer
+			if (perso.getLife() <= 0) {
+				System.out.println("l'ennemi vous à térrassé ! Vous avez perdu la partie !");
+				replay();
+			}
+			
 			// Essaye de faire le programme
 			try {
 				// Question relancer le dé
