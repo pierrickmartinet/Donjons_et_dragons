@@ -2,8 +2,6 @@ package boardCase;
 
 import characters.Personnage;
 import enemy.Enemy;
-import game.Menu;
-import game.Dice;
 
 public class EnemyCase extends BoardCase {
 

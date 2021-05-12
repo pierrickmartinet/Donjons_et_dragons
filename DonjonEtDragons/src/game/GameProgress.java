@@ -1,7 +1,6 @@
 package game;
 
 import java.util.Scanner;
-
 import boardCase.BoardCase;
 import boardCase.EnemyCase;
 import characters.Personnage;
@@ -9,7 +8,6 @@ import exceptions.PersonnageHorsPlateauException;
 
 public class GameProgress {
 
-	
 	// ATTRIBUTS
 	private Scanner keyboard;
 	private BoardGame boardGame;
@@ -17,20 +15,20 @@ public class GameProgress {
 	private Personnage perso;
 	private PlayerPlace playerPlace;
 
-	
 	// CONSTRUCTEUR
 	public GameProgress(Personnage perso) {
-		
+
 		keyboard = new Scanner(System.in);
 		boardGame = new BoardGame();
 		dice = new Dice();
 		playerPlace = new PlayerPlace();
 		this.perso = perso;
-		
+
 	}
 
-	
 	// METHODES
+
+	// Fonction de jeu
 	public void gameInProgress() {
 
 		playerPlace.setPlayerPlace(0);
@@ -73,27 +71,10 @@ public class GameProgress {
 			}
 
 		}
-
-		// Partie terminé, recommencer ou quitter ?
-		System.out
-				.println("Partie terminée, tape 1 pour recommencer avec ton personnage ou tape 2 pour quitter le jeu");
-		int endGameChoice = keyboard.nextInt();
-
-		// Si le joueur tape 1 la partie recommence, si le joueur tape 2 le programme
-		// s'arrêtte
-		switch (endGameChoice) {
-		case 1:
-			System.out.println("Recommencons alors!");
-			gameInProgress();
-			break;
-		case 2:
-			System.out.println("A bientôt");
-			System.exit(0);
-		}
-
+		replay();
 	}
 
-	
+	// Fonction jouer un tour
 	public void playTurn() throws PersonnageHorsPlateauException {
 
 		dice.throwDice();
@@ -103,24 +84,21 @@ public class GameProgress {
 		playerPlace.setPlayerPlace(playerPlace.getPlayerPlace() + dice.getDice());
 		// Si le joueur est au dela du plateau de jeu, lève une exception
 		if (playerPlace.getPlayerPlace() > 64) {
-			throw new PersonnageHorsPlateauException(
-					"Félicitations ! tu as gagné la partie ! ;)");
+			throw new PersonnageHorsPlateauException("Félicitations ! tu as gagné la partie ! ;)");
 
 		}
 		// Affichage new place du joueur
 		System.out.print("Tu est sur la case n° " + playerPlace.getPlayerPlace() + ", ");
 		BoardCase currentCase = boardGame.getBoardCases().get(playerPlace.getPlayerPlace());
 		if (currentCase instanceof EnemyCase) {
-		 
+
 			EnemyCase enemyCase = (EnemyCase) currentCase;
 			System.out.println(enemyCase.getEnemy().infoNameEnemy());
 			System.out.println(enemyCase.getEnemy().infoStatEnemy());
-			
-			
+
 			System.out.println("Tapez 1 pour attaquer ou 2 pour fuir");
 			int fightOrLeave = keyboard.nextInt();
-			
-			
+
 			switch (fightOrLeave) {
 			case 1:
 				// Interraction cases
@@ -133,16 +111,34 @@ public class GameProgress {
 				System.out.println("Vous êtes sur la case " + playerPlace.getPlayerPlace());
 				break;
 			}
+
 		} else {
 			// Interraction cases
 			currentCase.interaction(perso);
 		}
-		
+
 		// Affichage stats joueur
 		System.out.println("Voici tes nouvelles stats " + perso.getName() + ":");
-		System.out.println("Vie: " + perso.getLife());
-		System.out.println("Attaque: " + perso.getAttack());
-		System.out.println("Skills: " + perso.getWeaponName());
+		System.out.println(perso);
+	}
+
+	
+	// Fonction replay
+	public void replay() {
+
+		System.out.println("Partie terminée, tape 1 pour recommencer ou 2 pour quitter le jeu");
+		int endGameChoice = keyboard.nextInt();
+
+		// Si le joueur tape 1 la partie recommence, s'il tape 2 le programme s'arrête
+		switch (endGameChoice) {
+		case 1:
+			System.out.println("Recommencons alors!");
+			gameInProgress();
+			break;
+		case 2:
+			System.out.println("A bientôt");
+			System.exit(0);
+		}
 	}
 
 }

@@ -1,9 +1,7 @@
 package game;
 
-// Import de la classe scanner permettant de lire les entrées clavier
-import java.util.Scanner;
 
-// Import de classes nécessaires au fonctionnement de la classe Menu
+import java.util.Scanner;
 import characters.Personnage;
 import characters.Warrior;
 import magicianWeapons.MagicianWeapon;
@@ -13,12 +11,14 @@ import characters.Magician;
 
 public class Menu {
 
+	
 	// ATTRIBUTS
 	private Scanner keyboard;
 	private Personnage player;
 	private WarriorWeapon warriorWeapon;
 	private MagicianWeapon magicianWeapon;
 
+	
 	// CONSTRUCTEURS
 	public Menu() {
 		keyboard = new Scanner(System.in);
@@ -26,6 +26,7 @@ public class Menu {
 		magicianWeapon = null;
 	}
 
+	
 	// METHODES
 	public void execute() {
 
@@ -87,7 +88,7 @@ public class Menu {
 			System.out.println("Le nouveau nom de ton personnage est: " + player.getName());
 			break;
 		case 2:
-			System.out.println(player + " Skills: " + player.getWeaponName());
+			System.out.println(player);
 			break;
 		case 3:
 			System.out.println("A bientôt");
@@ -107,9 +108,9 @@ public class Menu {
 			System.exit(0);
 			break;
 		}
-
 	}
 
+	
 	public int questions(String question) {
 		int response;
 		System.out.println(question);
@@ -128,7 +129,4 @@ public class Menu {
 	public void setPlayer(Personnage player) {
 		this.player = player;
 	}
-	
-
-
 }

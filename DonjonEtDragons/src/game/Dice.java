@@ -19,7 +19,6 @@ public class Dice {
 		
 		int min = 1;
 		int max = 6;
-
 		dice = min + (int) (Math.random() * ((max - min) + 1));
 
 	}

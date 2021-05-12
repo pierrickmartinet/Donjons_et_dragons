@@ -2,7 +2,6 @@ package boardCase;
 
 import characters.Magician;
 import characters.Personnage;
-import characters.Warrior;
 import magicianWeapons.MagicianWeapon;
 
 public class WeaponMagicianCase extends BoardCase {

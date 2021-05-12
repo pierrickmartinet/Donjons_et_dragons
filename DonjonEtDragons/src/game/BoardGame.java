@@ -1,7 +1,6 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,7 +17,6 @@ import enemy.Wizard;
 import magicianWeapons.Fireball;
 import magicianWeapons.Lightning;
 import potions.BigPotion;
-import potions.Potion;
 import potions.StandardPotion;
 import warriorWeapons.Mace;
 import warriorWeapons.Sword;
@@ -33,7 +31,6 @@ public class BoardGame {
 	// CONSTRUCTEUR
 	public BoardGame() {
 
-		
 		// case 0
 		boardCases.add(new EmptyCase());
 		// case 1

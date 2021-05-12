@@ -28,6 +28,7 @@ public abstract class Personnage {
 	// METHODE
 	public abstract String getWeaponName();
 	
+	
 	// GETTERS ET SETTERS
 	
 	public String getName() {
@@ -57,7 +58,7 @@ public abstract class Personnage {
 	// TO STRING
 	@Override
 	public String toString() {
-		return "Nom: " + name + ", Vie: " + life + ", Attaque: " + attack;
+		return "Nom: " + name + ", Vie: " + life + ", Attaque: " + attack + ", Skills: " + getWeaponName();
 	}
 
 	
