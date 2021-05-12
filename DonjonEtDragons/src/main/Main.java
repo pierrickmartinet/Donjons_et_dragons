@@ -24,7 +24,7 @@ public class Main {
 		// Instenciation d'un objet de la classe GameProgress
 		GameProgress gameProgress = new GameProgress(menu.getPlayer());
 		// Appel de la fonction gameInProgress() de la classe GameProgress qui démarre le jeu
-		gameProgress.gameInProgress();
+		gameProgress.playGame();
 		
 	}
 }
