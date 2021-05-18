@@ -50,6 +50,8 @@ public abstract class Personnage {
 	 */
 	public abstract String getWeaponName();
 	
+	public abstract String getType();
+	
 	
 	// TO STRING
 	/**

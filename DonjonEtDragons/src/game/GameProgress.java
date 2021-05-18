@@ -1,5 +1,9 @@
 package game;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Scanner;
 import boardCase.BoardCase;
 import boardCase.EnemyCase;
@@ -69,6 +73,7 @@ public class GameProgress {
 	public void playGame() {
 
 		playerPlace.setPlayerPlace(0);
+		
 
 		// Affichage new place du joueur
 		System.out.println("Tu es sur la case n° 0, cette case est vide");
@@ -79,7 +84,7 @@ public class GameProgress {
 			// Essaye de faire le programme
 			try {
 				// Question relancer le dé
-				System.out.println("tape 1 pour lancer le dé ou 2 pour quitter le jeu");
+				System.out.println("tape 1 pour lancer le dé ou 2 pour sauvegarder le héro et quitter le jeu");
 
 				// Récupération du chiffre tapé
 				int diceChoice = keyboard.nextInt();
@@ -91,6 +96,9 @@ public class GameProgress {
 					playTurn();
 					break;
 				case 2:
+					// Sauvegarde du héro
+					System.out.println("Le héro suivant à été sauvegardé:");
+					saveHeroes();
 					// Quitte le jeu
 					System.out.println("A bientôt");
 					System.exit(0);
@@ -200,6 +208,30 @@ public class GameProgress {
 		case 2:
 			System.out.println("A bientôt");
 			System.exit(0);
+		}
+	}
+	
+	
+	public void saveHeroes() {
+		
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bdd_java", "piouk", "root");
+			Statement statement = connection.createStatement();
+			
+			statement.executeUpdate("INSERT INTO Hero (type, nom, pv, strenght, weapon) VALUES ('"+perso.getType()+"','"+perso.getName()+"','"+perso.getLife()+"','"+perso.getAttack()+"','"+perso.getWeaponName()+"');");
+			
+			ResultSet resultSet = statement.executeQuery("SELECT * FROM Hero ORDER BY id DESC LIMIT 1");
+			
+			while (resultSet.next()) {
+				System.out.println("type: " + resultSet.getString("type"));
+				System.out.println("nom: " + resultSet.getString("nom"));
+				System.out.println("vie: " +resultSet.getString("pv"));
+				System.out.println("attaque: " + resultSet.getString("strenght"));
+				System.out.println("arme: " + resultSet.getString("weapon"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -2,6 +2,7 @@ package main;
 
 import game.GameProgress;
 import game.Menu;
+
 /**
  * Main represente le point d'entrée du programme, le coeur du programme
  * @author piouk

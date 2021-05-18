@@ -17,6 +17,7 @@ public class Warrior extends Personnage{
 	 * les massue ou épée sont héritiers de la classe WarriorWeapon
 	 */
 	private WarriorWeapon weapon;
+	private String type;
 	
 	
 	// CONSTRUCTEURS
@@ -31,6 +32,7 @@ public class Warrior extends Personnage{
 	public Warrior(String name, int life, int attack, WarriorWeapon weapon) {
 		super(name, life, attack);
 		this.weapon = weapon;
+		this.type = "Guerrier";
 	}
 
 	
@@ -42,8 +44,12 @@ public class Warrior extends Personnage{
 		if (weapon != null) {
 			return weapon.getName();
 		} else {
-			return "Vous n'avez aucune arme";
+			return "non";
 		}
+	}
+	
+	public String getType() {
+		return type;
 	}
 	
 	

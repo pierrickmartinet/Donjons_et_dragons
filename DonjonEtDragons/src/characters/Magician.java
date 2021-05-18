@@ -17,6 +17,7 @@ public class Magician extends Personnage{
 	 * les eclairs ou grosse boule de feu sont héritiers de la classe MagicianWeapon
 	 */
 	private MagicianWeapon power;
+	private String type; 
 	
 	
 	// CONSTRUCTEURS
@@ -31,7 +32,7 @@ public class Magician extends Personnage{
 	public Magician(String name, int life, int attack, MagicianWeapon power) {
 		super(name, life, attack);
 		this.power = power;
-		
+		this.type = "Magicien";
 	}
 
 	
@@ -43,8 +44,12 @@ public class Magician extends Personnage{
 		if (power != null) {
 			return power.getName();
 		} else {
-			return "Vous n'avez aucun pouvoir";
+			return "non";
 		}
+	}
+	
+	public String getType() {
+		return type;
 	}
 	
 	

@@ -48,6 +48,7 @@ public class Menu {
 
 	
 	// METHODES
+	
 	/**
 	 * La méthode execute permet le déroulé du menu du jeu
 	 * elle permet à l'utilisateur de démarrer la partie, choisir son héro, le nom du héro
