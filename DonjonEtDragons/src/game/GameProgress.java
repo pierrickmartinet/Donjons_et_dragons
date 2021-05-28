@@ -1,13 +1,10 @@
 package game;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.Scanner;
 import boardCase.BoardCase;
 import boardCase.EnemyCase;
 import characters.Personnage;
+import dataBase.DataBase;
 import exceptions.PersonnageHorsPlateauException;
 
 /**
@@ -39,6 +36,10 @@ public class GameProgress {
 	 * playerPlace: position du joueur
 	 */
 	private PlayerPlace playerPlace;
+	
+	private DataBase dataBase;
+	
+	private Menu menu;
 
 	
 	// CONSTRUCTEUR
@@ -54,6 +55,8 @@ public class GameProgress {
 		boardGame = new BoardGame();
 		dice = new Dice();
 		playerPlace = new PlayerPlace();
+		dataBase = new DataBase();
+		menu = new Menu();
 		this.perso = perso;
 
 	}
@@ -78,13 +81,16 @@ public class GameProgress {
 		// Affichage new place du joueur
 		System.out.println("Tu es sur la case n° 0, cette case est vide");
 
-		// Tant que le joueur n'est pas au bout du plateau de jeu, il relance le dés
+		// Tant que la partie est en cours
 		while (gameInProgress()) {
 
 			// Essaye de faire le programme
 			try {
 				// Question relancer le dé
-				System.out.println("tape 1 pour lancer le dé ou 2 pour sauvegarder le héro et quitter le jeu");
+				System.out.println("+------------------------------------+");
+				System.out.println("| 1. Lancer le dé                    |");
+				System.out.println("| 2. Quitter et sauvegarder le héros |");
+				System.out.println("+------------------------------------+");
 
 				// Récupération du chiffre tapé
 				int diceChoice = keyboard.nextInt();
@@ -98,7 +104,7 @@ public class GameProgress {
 				case 2:
 					// Sauvegarde du héro
 					System.out.println("Le héro suivant à été sauvegardé:");
-					saveHeroes();
+					dataBase.saveHeroes(perso);
 					// Quitte le jeu
 					System.out.println("A bientôt");
 					System.exit(0);
@@ -111,7 +117,7 @@ public class GameProgress {
 			} catch (PersonnageHorsPlateauException e) {
 				System.out.println(e.getMessage());
 				// Remet le joueur à la case 64 du plateau de jeu
-				playerPlace.setPlayerPlace(63);
+				playerPlace.setPlayerPlace(64);
 				System.out.println("Tu es sur la case n° " + playerPlace.getPlayerPlace());
 			}
 
@@ -150,7 +156,7 @@ public class GameProgress {
 		// La position du joueur change en fonction du dé
 		playerPlace.setPlayerPlace(playerPlace.getPlayerPlace() + dice.getDice());
 		// Si le joueur est au dela du plateau de jeu, lève une exception
-		if (playerPlace.getPlayerPlace() > 64) {
+		if (playerPlace.getPlayerPlace() >= 64) {
 			throw new PersonnageHorsPlateauException("Félicitations ! tu as gagné la partie ! ;)");
 
 		}
@@ -163,7 +169,11 @@ public class GameProgress {
 			System.out.println(enemyCase.getEnemy().infoNameEnemy());
 			System.out.println(enemyCase.getEnemy().infoStatEnemy());
 
-			System.out.println("Tapez 1 pour attaquer ou 2 pour fuir");
+			System.out.println("+-----------------------------------+");
+			System.out.println("| Que fait on ?                     |");
+			System.out.println("| 1. Attaquer                       |");
+			System.out.println("| 2. Fuir et reculer de 1 à 6 cases |");
+			System.out.println("+-----------------------------------+");
 			int fightOrLeave = keyboard.nextInt();
 
 			switch (fightOrLeave) {
@@ -174,8 +184,7 @@ public class GameProgress {
 			case 2:
 				dice.throwDice();
 				playerPlace.setPlayerPlace(playerPlace.getPlayerPlace() - dice.getDice());
-				System.out.println("Vous reculez de " + dice.getDice() + " cases");
-				System.out.println("Vous êtes sur la case " + playerPlace.getPlayerPlace());
+				System.out.println("Vous reculez de " + dice.getDice() + " cases, oh non ! on est maintenant sur la case " + playerPlace.getPlayerPlace());
 				break;
 			}
 
@@ -185,7 +194,6 @@ public class GameProgress {
 		}
 
 		// Affichage stats joueur
-		System.out.println("Voici tes nouvelles stats " + perso.getName() + ":");
 		System.out.println(perso);
 	}
 
@@ -196,43 +204,22 @@ public class GameProgress {
 	 */
 	public void replay() {
 
-		System.out.println("Partie terminée, tape 1 pour recommencer ou 2 pour quitter le jeu");
+		System.out.println("+-----------------------------------+");
+		System.out.println("| La partie est terminé             |");
+		System.out.println("| 1. Recommencer                    |");
+		System.out.println("| 2. Quitter le jeu                 |");
+		System.out.println("+-----------------------------------+");
 		int endGameChoice = keyboard.nextInt();
 
 		// Si le joueur tape 1 la partie recommence, s'il tape 2 le programme s'arrête
 		switch (endGameChoice) {
 		case 1:
-			System.out.println("Recommencons alors!");
-			playGame();
+			System.out.println("Ok ! recommencons alors!");
+			menu.execute();
 			break;
 		case 2:
-			System.out.println("A bientôt");
+			System.out.println("A bientôt !");
 			System.exit(0);
 		}
 	}
-	
-	
-	public void saveHeroes() {
-		
-		try {
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bdd_java", "piouk", "root");
-			Statement statement = connection.createStatement();
-			
-			statement.executeUpdate("INSERT INTO Hero (type, nom, pv, strenght, weapon) VALUES ('"+perso.getType()+"','"+perso.getName()+"','"+perso.getLife()+"','"+perso.getAttack()+"','"+perso.getWeaponName()+"');");
-			
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM Hero ORDER BY id DESC LIMIT 1");
-			
-			while (resultSet.next()) {
-				System.out.println("type: " + resultSet.getString("type"));
-				System.out.println("nom: " + resultSet.getString("nom"));
-				System.out.println("vie: " +resultSet.getString("pv"));
-				System.out.println("attaque: " + resultSet.getString("strenght"));
-				System.out.println("arme: " + resultSet.getString("weapon"));
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 }

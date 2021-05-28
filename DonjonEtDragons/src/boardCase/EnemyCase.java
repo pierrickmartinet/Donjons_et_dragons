@@ -9,7 +9,7 @@ import enemy.Enemy;
  * @author piouk
  * @version 1.0
  */
-public class EnemyCase extends BoardCase {
+public class EnemyCase implements BoardCase {
 
 	// ATTRIBUTS
 	/**
@@ -42,6 +42,13 @@ public class EnemyCase extends BoardCase {
 	 * @param player Le joueur qui combat un ennemie
 	 */
 	public void interaction(Personnage player) {
+		
+		System.out.println("                          - LE COMBAT COMMENCE -");
+		System.out.println("           /\\                                                 /\\");
+		System.out.println(" _         )( ______________________   ______________________ )(         _");
+		System.out.println("(_)///////(**)______________________> <______________________(**)\\\\\\\\\\\\\\(_)");
+		System.out.println("           )(                                                 )(");
+		System.out.println("           \\/                                                 \\/");
 
 		// Tant que le joueur et l'ennemi ont des point de vie supérieur à zéro
 		while ((player.getLife()) > 0 && (enemy.getLife() > 0)) {
@@ -57,7 +64,7 @@ public class EnemyCase extends BoardCase {
 				System.out.println("il lui reste " + enemy.getLife() + " pv ! courage !");
 				// L'ennemi attaque et fait perdre des points de vie au joueur
 				player.setLife(player.getLife() - enemy.getAttack());
-				System.out.println("Oups ! l'ennemie vous fait perdre " + enemy.getAttack() + " points de vie");
+				System.out.println("Oups ! l'ennemie vous attaque et vous fait perdre " + enemy.getAttack() + " points de vie");
 				if (player.getLife() > 0) {
 					System.out.println("il vous reste " + player.getLife() + " pv");
 				}

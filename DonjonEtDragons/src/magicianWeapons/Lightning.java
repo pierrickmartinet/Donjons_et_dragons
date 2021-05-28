@@ -19,4 +19,9 @@ public class Lightning extends MagicianWeapon {
 
 	}
 
+	@Override
+	public String type() {
+		return "lightning";
+	}
+
 }

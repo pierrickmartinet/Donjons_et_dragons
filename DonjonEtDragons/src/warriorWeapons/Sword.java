@@ -19,4 +19,9 @@ public class Sword  extends WarriorWeapon{
 	
 	}
 
+	@Override
+	public String type() {
+		return "sword";
+	}
+
 }

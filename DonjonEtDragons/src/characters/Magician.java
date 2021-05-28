@@ -1,6 +1,6 @@
 package characters;
 
-import magicianWeapons.MagicianWeapon;
+import weapon.Weapon;
 
 /**
  * Magician est une classe representant un personnage de type magicien
@@ -16,7 +16,6 @@ public class Magician extends Personnage{
 	 * chaque arme de magicien contient des points d'attaque et un nom
 	 * les eclairs ou grosse boule de feu sont héritiers de la classe MagicianWeapon
 	 */
-	private MagicianWeapon power;
 	private String type; 
 	
 	
@@ -29,38 +28,20 @@ public class Magician extends Personnage{
 	 * @param attack Les points d'attaque du magicien
 	 * @param power L'arme du magicien
 	 */
-	public Magician(String name, int life, int attack, MagicianWeapon power) {
-		super(name, life, attack);
-		this.power = power;
+	public Magician(String name, int life, int attack, Weapon weapon) {
+		super(name, life, attack, weapon);
 		this.type = "Magicien";
+	}
+	
+	public Magician() {
+		
 	}
 
 	
 	// METHODES
-	/**
-	 * Méthode qui retourne l'arme du magicien
-	 */
-	public String getWeaponName() {
-		if (power != null) {
-			return power.getName();
-		} else {
-			return "non";
-		}
-	}
 	
 	public String getType() {
 		return type;
 	}
 	
-	
-	// GETTERS ET SETTERS
-	public MagicianWeapon getPower() {
-		return power;
-	}
-
-	public void setPower(MagicianWeapon power) {
-		this.power = power;
-	}
-	
-
 }

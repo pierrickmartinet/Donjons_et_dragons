@@ -90,7 +90,6 @@ public class BoardGame {
 		 * Permet de mélanger les cases du plateau de jeu
 		 */
 		Collections.shuffle(boardCases);
-
 	}
 
 	// GETTERS ET SETTERS

@@ -7,7 +7,7 @@ import characters.Personnage;
  * @author piouk
  * @version 1.0
  */
-public class EmptyCase extends BoardCase {
+public class EmptyCase implements BoardCase {
 	
 	
 	// METHODES

@@ -1,6 +1,6 @@
 package characters;
 
-import warriorWeapons.WarriorWeapon;
+import weapon.Weapon;
 
 /**
  * Warrior est une classe representant un personnage de type guerrier
@@ -16,7 +16,6 @@ public class Warrior extends Personnage{
 	 * chaque arme de guerrier contient des points d'attaque et un nom
 	 * les massue ou épée sont héritiers de la classe WarriorWeapon
 	 */
-	private WarriorWeapon weapon;
 	private String type;
 	
 	
@@ -29,38 +28,20 @@ public class Warrior extends Personnage{
 	 * @param attack Les points d'attaque du guerrier
 	 * @param weapon L'arme du guerrier
 	 */
-	public Warrior(String name, int life, int attack, WarriorWeapon weapon) {
-		super(name, life, attack);
-		this.weapon = weapon;
+	public Warrior(String name, int life, int attack, Weapon weapon) {
+		super(name, life, attack, weapon);
 		this.type = "Guerrier";
+	}
+	
+	public Warrior() {
+		
 	}
 
 	
 	// METHODES
-	/**
-	 * Méthode qui retourne l'arme du guerrier
-	 */
-	public String getWeaponName() {
-		if (weapon != null) {
-			return weapon.getName();
-		} else {
-			return "non";
-		}
-	}
 	
 	public String getType() {
 		return type;
 	}
-	
-	
-	// GETTERS ET SETTERS
-	public WarriorWeapon getWeapon() {
-		return weapon;
-	}
-
-	public void setWeapon(WarriorWeapon weapon) {
-		this.weapon = weapon;
-	}
-	
 	
 }

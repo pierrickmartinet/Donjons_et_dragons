@@ -9,7 +9,7 @@ import magicianWeapons.MagicianWeapon;
  * @author piouk
  * @version 1.0
  */
-public class WeaponMagicianCase extends BoardCase {
+public class WeaponMagicianCase implements BoardCase {
 
 	
 	// ATTRIBUTS
@@ -44,7 +44,7 @@ public class WeaponMagicianCase extends BoardCase {
 		if (player instanceof Magician) {
 
 			// Modifie l'arme du guerrier
-			((Magician) player).setPower(power);
+			((Magician) player).setWeapon(power);
 			// Augmente l'attaque selon l'attaque de base
 			player.setAttack(3 + power.getAttackPoint());
 			// Affichage

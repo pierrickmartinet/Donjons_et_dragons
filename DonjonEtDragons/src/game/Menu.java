@@ -1,21 +1,22 @@
 package game;
 
-
 import java.util.Scanner;
 import characters.Personnage;
 import characters.Warrior;
+import dataBase.DataBase;
 import magicianWeapons.MagicianWeapon;
 import warriorWeapons.WarriorWeapon;
+import weapon.Weapon;
 import characters.Magician;
 
 /**
  * Menu represente le menu d'entrée du jeu
+ * 
  * @author piouk
  * @version 1.0
  */
 public class Menu {
 
-	
 	// ATTRIBUTS
 	/**
 	 * keyboard: scanner permettant de lire les entrées clavier de l'utilisateur
@@ -25,120 +26,173 @@ public class Menu {
 	 * player: joueur
 	 */
 	private Personnage player;
-	/**
-	 * warriorWeapon: représente une arme de guerrier (null au départ)
-	 */
-	private WarriorWeapon warriorWeapon;
-	/**
-	 * magicianWeapon: représente une arme de magicien (null au départ)
-	 */
-	private MagicianWeapon magicianWeapon;
-
 	
+	
+	private DataBase dataBase;
+
 	// CONSTRUCTEURS
 	/**
-	 * Le constructeur de Menu permet l'instanciation d'un scanner lisant les entrées utilisateur, 
-	 * il défini une valeur nulle aux armes des personnage utile lors de l'instanciation de ceux ci
+	 * Le constructeur de Menu permet l'instanciation d'un scanner lisant les
+	 * entrées utilisateur, il défini une valeur nulle aux armes des personnage
+	 * utile lors de l'instanciation de ceux ci
 	 */
 	public Menu() {
 		keyboard = new Scanner(System.in);
-		warriorWeapon = null;
-		magicianWeapon = null;
+		dataBase = new DataBase();
 	}
 
-	
 	// METHODES
-	
+
 	/**
-	 * La méthode execute permet le déroulé du menu du jeu
-	 * elle permet à l'utilisateur de démarrer la partie, choisir son héro, le nom du héro
+	 * La méthode execute permet le déroulé du menu du jeu elle permet à
+	 * l'utilisateur de démarrer la partie, choisir son héro, le nom du héro
 	 */
 	public void execute() {
 
-		System.out.println("Bonjour, bienvenue sur le jeu Donjons et dragons");
+		// Bienvenue
+		System.out.println("                   ,   ,");
+		System.out.println("                   \\\\  \\\\");
+		System.out.println("                   ) \\\\  \\\\       _p_");
+		System.out.println("                   )^\\\\ ))\\\\ )) /  *\\");
+		System.out.println("                    \\  _|| ||  / /^`-'");
+		System.out.println("           __       -\\ \\\\--   / /");
+		System.out.println("         <'  \\\\___/      ___. )'\n" + "");
+		System.out.println("               `====\\  )___/\\\\");
+		System.out.println("                   //       `\" ");
+		System.out.println("                   \\\\       /  \\\n" + "");
+		System.out.println("                   +====================+");
+		System.out.println("                   |     Bienvenue      |");
+		System.out.println("                   |        dans        |");
+		System.out.println("                   | Donjons et dragons |");
+		System.out.println("                   +====================+");
 
 		// Enregistrement du premier choix saisi
-		int firstChoice = questions("veuillez saisir 1 pour start ou 2 pour quitter le jeu");
+
+		System.out.println("+----------------------------+");
+		System.out.println("| 1. Nouvelle partie         |");
+		System.out.println("| 2. Charger dernière partie |");
+		System.out.println("+----------------------------+");
+		int firstChoice = questions("");
 
 		switch (firstChoice) {
+		// Nouvelle partie
 		case 1:
-			System.out.println("Tu as choisis start !");
+			System.out.println("C'est partit !");
+
+			// Enregistrement du choix personnage saisi
+			System.out.println("+----------------------------+");
+			System.out.println("| Choisi un type:            |");
+			System.out.println("| 1. Guerrier                |");
+			System.out.println("| 2. Magicien                |");
+			System.out.println("+----------------------------+");
+			int characterChoice = questions("");
+
+			switch (characterChoice) {
+			case 1:
+				System.out.println("Ok pour guerrier !");
+				System.out.println("+----------------------------+");
+				System.out.println("|   Choisi ton petit nom     |");
+				System.out.println("+----------------------------+");
+				String characterWarriorName = keyboard.nextLine();
+				// Création d'un Warrior
+				player = new Warrior(characterWarriorName, 5, 5, null);
+				break;
+			case 2:
+				System.out.println("Ok pour magicien !");
+				System.out.println("+----------------------------+");
+				System.out.println("|   Choisi ton petit nom     |");
+				System.out.println("+----------------------------+");
+				String characterMagicianName = keyboard.nextLine();
+				// Création d'un Magicien
+				player = new Magician(characterMagicianName, 3, 8, null);
+				break;
+			case 3:
+				System.out.println("A bientôt !");
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Tape 1 pour warrior ou 2 pour magicien");
+			}
+
+			// Affichage du nom
+			System.out.println("Ah mais tu t'appelles " + player.getName() + ", j'ai déjà entendu parlé de toi !");
+
+			System.out.println("+--------------------------------+");
+			System.out.println("| Que veux tu faire maintenant ? |");
+			System.out.println("| 1. Modifier ton nom            |");
+			System.out.println("| 2. Afficher stats              |");
+			System.out.println("| 3. Quitter le jeu              |");
+			System.out.println("+--------------------------------+");
+			int addOrEdit = questions("");
+
+			switch (addOrEdit) {
+			case 1:
+				System.out.println("+------------------------------------+");
+				System.out.println("|    Choisi ton nouveau petit nom    |");
+				System.out.println("+------------------------------------+");
+				String editName = keyboard.nextLine();
+				player.setName(editName);
+				System.out
+						.println("Ok pour " + player.getName() + " alors, mais on change plus aprés je m'embrouille !");
+				break;
+			case 2:
+				System.out.println(player);
+				break;
+			case 3:
+				System.out.println("A bientôt !");
+				System.exit(0);
+				break;
+			}
+
+			// Démarrer ou quitter le jeu
+			System.out.println("+----------------------------+");
+			System.out.println("| On y est presque:          |");
+			System.out.println("| 1. Lancer une partie       |");
+			System.out.println("| 2. Quitter le jeu          |");
+			System.out.println("+----------------------------+");
+			int startOrExit = questions("");
+
+			switch (startOrExit) {
+			case 1:
+				System.out.println("  _______________________________________");
+				System.out.println(" /                                       \\");
+				System.out.println("/   _   _   _                 _   _   _   \\");
+				System.out.println("|  | |_| |_| |   _   _   _   | |_| |_| |  |");
+				System.out.println("|   \\   _   /   | |_| |_| |   \\   _   /   |");
+				System.out.println("|    | | | |     \\       /     | | | |    |");
+				System.out.println("|    | |_| |______|     |______| |_| |    |");
+				System.out.println("|    |              ___              |    |");
+				System.out.println("|    |  _    _    (     )    _    _  |    |");
+				System.out.println("|    | | |  |_|  (       )  |_|  | | |    |");
+				System.out.println("|    | |_|       |       |       |_| |    |");
+				System.out.println("|   /            |_______|            \\   |");
+				System.out.println("|  |___________________________________|  |");
+				System.out.println("\\           La partie commence            /");
+				System.out.println(" \\_______________________________________/");
+				break;
+			case 2:
+				System.out.println("A bientôt !");
+				System.exit(0);
+				break;
+			}
 			break;
 		case 2:
-			System.out.println("A bientôt");
-			System.exit(0);
-			break;
-		default:
-			System.out.println("Saisis 1 pour start ou 2 pour quitter le jeu");
-		}
-
-		// Enregistrement du choix personnage saisi
-		int characterChoice = questions(
-				"choisis ton personnage, tape 1 pour warrior, 2 pour magicien ou 3 pour quitter");
-
-		switch (characterChoice) {
-		case 1:
-			System.out.println("Tu as choisis warrior");
-			System.out.println("Choisis un nom");
-			String characterWarriorName = keyboard.nextLine();
-			// Création d'un Warrior
-			player = new Warrior(characterWarriorName, 5, 5, warriorWeapon);
-			break;
-		case 2:
-			System.out.println("Tu as choisis magicien");
-			System.out.println("Choisis un nom");
-			String characterMagicianName = keyboard.nextLine();
-			// Création d'un Magicien
-			player = new Magician(characterMagicianName, 3, 8, magicianWeapon);
-			break;
-		case 3:
-			System.out.println("A bientôt");
-			System.exit(0);
-			break;
-		default:
-			System.out.println("Tape 1 pour warrior ou 2 pour magicien");
-		}
-
-		// Affichage du nom
-		System.out.println("Tu as choisis d'appeller ton personnage: " + player.getName());
-
-		// Afficher les informations ou modifier le nom du personnage
-		int addOrEdit = questions("Tape 1 pour modifier ton nom, 2 pour afficher les info du perso ou 3 pour quitter");
-
-		switch (addOrEdit) {
-		case 1:
-			System.out.println("Saisis ton nouveau nom de personnage");
-			String editName = keyboard.nextLine();
-			player.setName(editName);
-			System.out.println("Le nouveau nom de ton personnage est: " + player.getName());
-			break;
-		case 2:
+			// Partie chargé
+			player = dataBase.loadLastGame();
+			System.out.println("Voici votre dernière sauvegarde :");
 			System.out.println(player);
-			break;
-		case 3:
-			System.out.println("A bientôt");
-			System.exit(0);
-			break;
-		}
 
-		// Démarrer ou quitter le jeu
-		int startOrExit = questions("On y est presque ! Tape 1 pour démarrer ou 2 pour quitter le jeu");
-
-		switch (startOrExit) {
-		case 1:
-			System.out.println("Le jeu démarre");
-			break;
-		case 2:
-			System.out.println("A bientôt");
-			System.exit(0);
-			break;
 		}
+		
 	}
 
 	/**
-	 * La méthode question permet de poser une question à un utilisateur et de retourner un entier representant sa réponse 
+	 * La méthode question permet de poser une question à un utilisateur et de
+	 * retourner un entier representant sa réponse
+	 * 
 	 * @param question la question à poser à l'utilisateur (type: String)
-	 * @return un entier comportant l'entrée clavier de l'utilisateur pour la question posé
+	 * @return un entier comportant l'entrée clavier de l'utilisateur pour la
+	 *         question posé
 	 */
 	public int questions(String question) {
 		int response;
@@ -149,7 +203,6 @@ public class Menu {
 		return response;
 	}
 
-	
 	// GETTERS ET SETTERS
 	public Personnage getPlayer() {
 		return player;

@@ -19,4 +19,9 @@ public class Mace extends WarriorWeapon{
 
 	}
 
+	@Override
+	public String type() {
+		return "mace";
+	}
+
 }

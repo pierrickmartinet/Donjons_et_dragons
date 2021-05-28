@@ -1,20 +1,13 @@
 package magicianWeapons;
+
+import weapon.Weapon;
+
 /**
  * MagicianWeapon represente une arme de magicien 
  * @author piouk
  * @version 1.0
  */
-public abstract class MagicianWeapon {
-	
-	// ATTRIBUTS
-	/**
-	 * name: le nom de l'arme de magicien (type: String)
-	 */
-	private String name;
-	/**
-	 * attackPoint: le nombre de point d'attaque de l'arme de magicien (type: int)
-	 */
-	private int attackPoint;
+public abstract class MagicianWeapon extends Weapon {
 	
 	
 	// CONSTRUCTEURS
@@ -25,26 +18,7 @@ public abstract class MagicianWeapon {
 	 * @param attackPoint: les points d'attaque de l'arme
 	 */
 	public MagicianWeapon(String name, int attackPoint) {
-		this.name = name;
-		this.attackPoint = attackPoint;
-	}
-
-	
-	// GETTERS ET SETTERS
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getAttackPoint() {
-		return attackPoint;
-	}
-
-	public void setAttackPoint(int attackPoint) {
-		this.attackPoint = attackPoint;
+		super(name,attackPoint);
 	}
 	
 }

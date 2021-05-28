@@ -8,7 +8,7 @@ import potions.Potion;
  * @author piouk
  * @version 1.0
  */
-public class PotionCase extends BoardCase {
+public class PotionCase implements BoardCase {
 	
 	// ATTRIBUTS
 	/**

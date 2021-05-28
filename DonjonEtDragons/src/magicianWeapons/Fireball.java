@@ -20,4 +20,9 @@ public class Fireball extends MagicianWeapon {
 
 	}
 
+	@Override
+	public String type() {
+		return "fireball";
+	}
+
 }

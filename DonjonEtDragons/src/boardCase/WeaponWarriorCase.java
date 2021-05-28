@@ -9,7 +9,7 @@ import warriorWeapons.WarriorWeapon;
  * @author piouk
  * @version 1.0
  */
-public class WeaponWarriorCase extends BoardCase {
+public class WeaponWarriorCase implements BoardCase {
 
 	
 	// ATTRIBUTS
